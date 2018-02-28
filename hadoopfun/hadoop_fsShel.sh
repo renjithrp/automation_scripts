@@ -1,5 +1,5 @@
 #!/bin/bash
-#Version : 0.2
+#Version : 0.3
 #--@auther : Renjith--
 # ;-) just for fun
 get_user_dir () {
@@ -13,10 +13,17 @@ get_user_dir () {
 
 cd_command () {
         if [[ ${1:0:1} == / ]];then
+		
             DIR=$1
-                else
+			
+        elif [[ $CWD == '/' ]];then 
+		
+			DIR="$CWD$1"
+			
+		else
+		
             DIR="$CWD/$1"
-fi
+		fi
 
         hadoop fs -stat $DIR > /dev/null
         if [[ $? -eq 0 ]]; then
@@ -76,24 +83,31 @@ run_shell () {
         else
 
 			PARM="-${CMD%% *}"
-			TGT=${CMD##* }
+			TGT=$(echo $CMD | awk '{print $2}')
 			if [[ ${TGT:0:1} == / ]];then
 			
                 EXEC="$PARM ${TGT}"
 				
-			elif [[ ${TGT} == 'ls' ]];then
-
-                EXEC="$PARM ${TGT} ${CWD}"
-				
 			else
 			
-                EXEC="$PARM $CWD/$TGT"
+                if [[ -z ${TGT} ]];then
+				
+					EXEC="$PARM $CWD"
+					
+				elif [[ $CWD == "/" ]];then
+				
+					EXEC="$PARM $CWD$TGT"
+					
+				else
+					
+					EXEC="$PARM $CWD/$TGT"
+				fi
 			fi
             hadoop fs $EXEC
         fi
 }
 
-echo "Hadoop fs shell Cli version 0.2"
+echo "Hadoop fs shell Cli version 0.3"
 echo ""
 usage
 echo ""
