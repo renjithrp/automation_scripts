@@ -75,17 +75,21 @@ run_shell () {
 
         else
 
-        PARM="-${CMD%% *}"
-        TGT=${CMD##* }
-        if [[ ${TGT:0:1} == / ]];then
+			PARM="-${CMD%% *}"
+			TGT=${CMD##* }
+			if [[ ${TGT:0:1} == / ]];then
+			
                 EXEC="$PARM ${TGT}"
-        elif [[ ${TGT} == 'ls' ]];then
+				
+			elif [[ ${TGT} == 'ls' ]];then
 
                 EXEC="$PARM ${TGT} ${CWD}"
-        else
+				
+			else
+			
                 EXEC="$PARM $CWD/$TGT"
-        fi
-              hadoop fs $EXEC
+			fi
+            hadoop fs $EXEC
         fi
 }
 
