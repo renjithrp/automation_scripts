@@ -2,6 +2,8 @@
 #Version : 0.3
 #--@auther : Renjith--
 # ;-) just for fun
+# Run this script on hadoop edge node
+
 get_user_dir () {
         USER_DIR="/user/$USER"
         CWD=${CWD:-$USER_DIR}
