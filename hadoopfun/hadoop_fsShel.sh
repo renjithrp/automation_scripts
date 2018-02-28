@@ -1,7 +1,7 @@
 #!/bin/bash
 #Version : 0.2
 #--@auther : Renjith--
-# ;-) for fun
+# ;-) just for fun
 get_user_dir () {
         USER_DIR="/user/$USER"
         CWD=${CWD:-$USER_DIR}
