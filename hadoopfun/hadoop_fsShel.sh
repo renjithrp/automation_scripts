@@ -1,8 +1,7 @@
 #!/bin/bash
-#Version : 0.1
+#Version : 0.2
 #--@auther : Renjith--
-# ;-) Just for fun
-
+# ;-) for fun
 get_user_dir () {
         USER_DIR="/user/$USER"
         CWD=${CWD:-$USER_DIR}
@@ -79,16 +78,18 @@ run_shell () {
         PARM="-${CMD%% *}"
         TGT=${CMD##* }
         if [[ ${TGT:0:1} == / ]];then
+                EXEC="$PARM ${TGT}"
+        elif [[ ${TGT} == 'ls' ]];then
 
-                EXEC="$PARM $TGT"
-                else
+                EXEC="$PARM ${TGT} ${CWD}"
+        else
                 EXEC="$PARM $CWD/$TGT"
         fi
               hadoop fs $EXEC
         fi
 }
 
-echo "Hadoop fs shell Cli version 0.1"
+echo "Hadoop fs shell Cli version 0.2"
 echo ""
 usage
 echo ""
