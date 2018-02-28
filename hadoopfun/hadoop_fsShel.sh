@@ -1,6 +1,6 @@
 #!/bin/bash
 #Version : 0.3
-#--@auther : Renjith--
+#---@auther : Renjith---
 # ;-) just for fun
 # Run this script on hadoop edge node
 
