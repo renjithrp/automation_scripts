@@ -1,5 +1,6 @@
 #!/bin/bash
 #@Auther: Renjith
+#@Shell Script for generating signed certificate like a local PKI Server
 #Usage: GenerateCrt.sh <HOST_NAME>
 #Output 
 #folder/file
