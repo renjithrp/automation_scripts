@@ -23,6 +23,7 @@ CA_LOCALITY='Lisle'
 CA_STATE='Illinois'
 CA_COUNTRY='US'
 CA_VALIDITY='1024'
+CA_KEYSIZE='4096'
 
 #Settings for Certificate Signing
 CSR_ORG='My Organisation'
@@ -32,6 +33,11 @@ CSR_STATE='Illinois'
 CSR_COUNTRY='US'
 KEYSTORE_PASSWORD='changeit'
 CRT_VALIDITY='365'
+CRT_KEYSIZE='4096'
+
+#Advanced Settings
+CRT_SIG_ALG='SHA256withRSA'
+CRT_KEY_ALG='RSA'
 
 HOST_NAME=$1
 . /etc/rc.d/init.d/functions
@@ -72,7 +78,7 @@ console_msg(){
 createCA(){
 
         mkdir $CA_FOLDER 2>>/dev/null
-        openssl genrsa -des3 -out $CA_FOLDER/CA.key -passout pass:$CA_PASSWORD 2048 -sha256 -extensions v3_ca
+        openssl genrsa -des3 -out $CA_FOLDER/CA.key -passout pass:$CA_PASSWORD $CA_KEYSIZE -sha256 -extensions v3_ca
         openssl req -x509 -new -nodes -key $CA_FOLDER/CA.key -passin pass:$CA_PASSWORD -days $CA_VALIDITY -out $CA_FOLDER/CA.crt -sha256 -extensions v3_ca -subj "/C=$CA_COUNTRY/ST=$CA_STATE/L=$CA_LOCALITY/O=$CA_ORG/OU=$CA_OU/CN=$CA_CN"
         console_msg "$?" "Creating CA Certificate for $CA_CN"
 
@@ -99,7 +105,7 @@ checkCRT(){
 genCRT(){
 
         mkdir $HOST_NAME 2>>/dev/null
-        keytool -genkey -alias $HOST_NAME -keyalg RSA -keystore $HOST_NAME/keystore.jks -keysize 2048  -sigalg SHA256withRSA -dname "CN=$HOST_NAME, OU=$CSR_OU, O=$CSR_ORG, L=$CSR_LOCALITY, S=$CSR_STATE, C=$CSR_COUNTRY" -storepass $KEYSTORE_PASSWORD -keypass $KEYSTORE_PASSWORD
+        keytool -genkey -alias $HOST_NAME -keyalg $CRT_KEY_ALG -keystore $HOST_NAME/keystore.jks -keysize $CRT_KEYSIZE -sigalg $CRT_SIG_ALG -dname "CN=$HOST_NAME, OU=$CSR_OU, O=$CSR_ORG, L=$CSR_LOCALITY, S=$CSR_STATE, C=$CSR_COUNTRY" -storepass $KEYSTORE_PASSWORD -keypass $KEYSTORE_PASSWORD
         console_msg "$?" "Creating Keystore file"
 
         keytool -certreq -alias $HOST_NAME -keystore $HOST_NAME/keystore.jks -file $HOST_NAME/$HOST_NAME.csr -storepass $KEYSTORE_PASSWORD
