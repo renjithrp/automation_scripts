@@ -86,7 +86,7 @@ createCA(){
 
 checkCRT(){
 
-        if [ -f $1 ] || [ -f $2 ]];then
+        if [ -f $1 ] || [ -f $2 ];then
 
                 SHA_KEY=$(openssl pkey -in $1 -passin pass:changeit -pubout -outform pem | sha256sum | awk '{print $1}')
                 SHA_CRT=$(openssl x509 -in $2 -pubkey -noout -outform pem | sha256sum | awk '{print $1}')
