@@ -123,6 +123,7 @@ genCRT(){
         console_msg "$?" "Generating key file form keystore"
 
 		checkCRT $HOST_NAME/$HOST_NAME.key $HOST_NAME/$HOST_NAME.crt "Verifying Certificate and Key files"
+		
 }
 
 if [[ -z $HOST_NAME ]];then
