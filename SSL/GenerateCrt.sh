@@ -122,7 +122,7 @@ genCRT(){
         openssl pkcs12 -in $HOST_NAME/$HOST_NAME.p12 -out $HOST_NAME/$HOST_NAME.key -nocerts -nodes  -passin pass:$KEYSTORE_PASSWORD
         console_msg "$?" "Generating key file form keystore"
 
-		checkCRT $HOST_NAME/$HOST_NAME.key $HOST_NAME/$HOST_NAME.crt "Verifying Certificate and Key files"
+	checkCRT $HOST_NAME/$HOST_NAME.key $HOST_NAME/$HOST_NAME.crt "Verifying Certificate and Key files"
 		
 }
 
