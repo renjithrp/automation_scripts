@@ -17,7 +17,7 @@ yum install openssl
 for Ubuntu/debian
 
 ```
-apt-get install install openssl
+apt-get install openssl
 
 ```
 ### Installing
