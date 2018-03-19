@@ -49,7 +49,7 @@ do
 	
 done
 
-for livy_host in $(echo LIVY_HOSTS | tr ';' '\n')
+for livy_host in $(echo $LIVY_HOSTS | tr ';' '\n')
 do
 	check_service $livy_host LIVY_SERVER
 	
