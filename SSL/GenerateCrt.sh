@@ -40,7 +40,11 @@ CRT_SIG_ALG='SHA256withRSA'
 CRT_KEY_ALG='RSA'
 
 HOST_NAME=$1
+TMP_PATH=$PATH
+
 . /etc/rc.d/init.d/functions
+
+PATH=$PATH:$TMP_PATH
 
 usage(){
 
