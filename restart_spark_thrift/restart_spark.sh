@@ -51,7 +51,7 @@ done
 
 for livy_host in $(echo LIVY_HOSTS | tr ';' '\n')
 do
-	check service $livy_host LIVY_SERVER
+	check_service $livy_host LIVY_SERVER
 	
 	if [ $? -ne 0 ];then 
 	
@@ -61,7 +61,7 @@ do
 	
 	fi
 	
-	check service $livy_host LIVY2_SERVER
+	check_service $livy_host LIVY2_SERVER
 	
 	if [ $? -ne 0 ];then 
 	
