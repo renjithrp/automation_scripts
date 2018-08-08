@@ -1,7 +1,7 @@
 #!/bin/bash
 #Script for killing HADOOP jobs running more than a given time"
 #Time should be specified in hours
-#usage ./kill_jobs.sh <TIME_IN_HOURS>
+#usage sh kill_jobs.sh <TIME_IN_HOURS>
 
 LOG=/tmp/job_log
 declare -a LIST_APP JOB_TIME
