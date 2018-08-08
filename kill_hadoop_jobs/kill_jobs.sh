@@ -25,7 +25,7 @@ do
 
         if [[ $DIFF -gt $TR_TIME ]];then
 
-			yarn application -kill $JOB 2>/dev/null && echo "$JOB is running $DIFF mins -> KILLED" | tee -a $LOG
+		  yarn application -kill $JOB 2>/dev/null && echo "$JOB is running $DIFF mins -> KILLED" | tee -a $LOG
 
         fi
      fi
