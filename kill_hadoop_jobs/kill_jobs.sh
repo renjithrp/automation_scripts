@@ -17,7 +17,7 @@ LIST_APP=($(yarn application -list 2>/dev/null | grep '^application\||RUNNING' |
 for JOB in ${LIST_APP[@]}
 do
 
-    JOB_TIME=($(yarn application -status $JOB 2>/dev/null | grep 'Start-Time\|Finish-Time'| awk -F: '{print $NF}' | tr '\n' ' '))
+    JOB_TIME=($(yarn application -status $JOB 2>/dev/null | grep 'Start-Time\|Finish-Time'| awk -F: '{print $NF}'))
 
     if [[ ${JOB_TIME[1]} -eq 0 ]];then
 
