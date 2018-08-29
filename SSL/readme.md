@@ -25,7 +25,7 @@ apt-get install openssl
 Download GenerateCrt.sh
 
 ```
-wget https://github.com/renjithrp/automation_scripts/blob/master/SSL/GenerateCrt.sh
+wget https://github.com/renjithrp/automation_scripts/raw/master/SSL/GenerateCrt.sh
 ```
 
 Modify the settings for Certificate Authority and Signing process

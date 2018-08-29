@@ -6,7 +6,7 @@
 Download kill_jobs.sh
 
 ```
-wget https://github.com/renjithrp/automation_scripts/blob/master/kill_hadoop_jobs/kill_jobs.sh
+wget https://github.com/renjithrp/automation_scripts/raw/master/kill_hadoop_jobs/kill_jobs.sh
 ```
 
 Modify LOG location if needed
